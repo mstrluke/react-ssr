@@ -1,0 +1,49 @@
+{
+  "name": "react-ssr",
+  "version": "1.0.0",
+  "description": "React Isomorphic (SSR, CSR)",
+  "repository": "https://github.com/mstrluke/react-ssr",
+  "bugs": "https://github.com/mstrluke/react-ssr/issues",
+  "author": "Ulukbek Dzhunusov <dzhunusov.ulukbek@gmail.com> (https://github.com/mstrluke)",
+  "license": "MIT",
+  "main": "index.js",
+  "keywords": [
+    "react",
+    "SSR",
+    "CSR",
+    "HMR"
+  ],
+  "scripts": {
+    "build": "webpack --config config/webpack-prod.config.js",
+    "dev": "webpack serve --config config/webpack-dev.config.js",
+    "prod": "yarn build && node src/server.js"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "@babel/register": "^7.12.10",
+    "babel-loader": "^8.2.2",
+    "copy-webpack-plugin": "^7.0.0",
+    "eslint": "^7.16.0",
+    "eslint-plugin-react": "^7.21.5",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "5.0.0-alpha.3",
+    "webpack": "^5.11.0",
+    "webpack-cli": "^4.3.0",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-manifest-plugin": "^3.0.0",
+    "webpack-merge": "^5.7.3"
+  }
+}
