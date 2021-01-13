@@ -12,10 +12,10 @@ Use it as you want.
 - Hot Module Replacement
 - Webpack Dev Server
 - Code splitting
+- Components Lazy Loading
 
 ### Todo features
 
-- Components Lazy Loading
 - CSS and SCSS Support
 - Docker wrapper
 - React Context API
