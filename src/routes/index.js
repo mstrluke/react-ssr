@@ -1,23 +1,26 @@
-import HomePage from '../pages/HomePage';
-import AboutPage from '../pages/AboutPage';
-import NotFoundPage from '../pages/NotFoundPage';
+import loadable from "@loadable/component";
+
+const HomePage = loadable(() => import('../pages/HomePage'))
+const AboutPage = loadable(() => import('../pages/AboutPage'))
+const NotFoundPage = loadable(() => import('../pages/NotFoundPage'))
+
 
 export default [
   {
     title: 'Home',
-    component: HomePage,
     path: '/',
-    exact: true
+    exact: true,
+    component: HomePage,
   },
   {
     title: 'About',
-    component: AboutPage,
+    exact: true,
     path: '/about',
-    exact: true
+    component: AboutPage,
   },
   {
     title: 'Not Found',
+    exact: true,
     component: NotFoundPage,
-    exact: true
   }
 ];

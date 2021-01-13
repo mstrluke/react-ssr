@@ -1,6 +1,6 @@
 const path = require('path');
 const CopyPlugin = require("copy-webpack-plugin");
-const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const LoadablePlugin = require('@loadable/webpack-plugin')
 
 
 module.exports = {
@@ -15,18 +15,6 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [
-    new WebpackManifestPlugin({
-      fileName: 'asset-manifest.json',
-      publicPath: '/',
-      generate: (seed, files) => {
-        const manifestFiles = files.reduce(function (manifest, file) {
-          manifest[file.name] = file.path
-          return manifest
-        }, seed)
-
-        return manifestFiles;
-      },
-    }),
     new CopyPlugin({
       patterns: [
         {
@@ -36,6 +24,7 @@ module.exports = {
         },
       ],
     }),
+    new LoadablePlugin(),
   ],
   module: {
     rules: [

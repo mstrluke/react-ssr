@@ -2,17 +2,13 @@ require('@babel/register')({
   presets: ['@babel/preset-env', '@babel/preset-react'],
 });
 
-const { renderAssets, template } = require('./utils');
+const { template } = require('./utils');
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
+
 
 const PORT = process.env.APP_PORT || '3000'
-
-const assets = JSON.parse(
-  fs.readFileSync(path.resolve(process.cwd(), './build/asset-manifest.json'))
-);
-
+const assets = path.resolve(process.cwd(), './build/loadable-stats.json')
 const app = express();
 const router = express.Router();
 
@@ -26,9 +22,9 @@ app.use((req, res, next) => {
 })
 
 router.get('/*', (req, res) => {
-  const files = renderAssets(assets)
-  const html = template(files, req, res);
-  
+  const html = template(assets, req, res);
+
+  res.set('content-type', 'text/html')
   res.send(html);
 });
 
