@@ -31,9 +31,11 @@ const template = (assets, req, res) => {
     <html lang="en" ${helmet.htmlAttributes.toString()}>
       <head>
       <meta charset="utf-8" />
+      <meta name="theme-color" content="#000000" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="icon" href="/favicon.ico" />
       <link rel="manifest" href="/manifest.webmanifest" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
         ${helmet.link.toString()}
