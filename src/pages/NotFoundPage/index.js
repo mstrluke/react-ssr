@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet'
 
-const AboutPage = ({ history }) => {
+const NotFound = ({ history }) => {
   const handleClick = () => {
     history.push('/')
   }
@@ -10,17 +10,17 @@ const AboutPage = ({ history }) => {
   return (
     <div>
       <Helmet>
-        <title>About page | React SSR</title>
-        <meta name="description" content="About page" />
+        <title>404 Not Found Page | React SSR</title>
+        <meta name="description" content="Not Found Page" />
       </Helmet>
-      <p>About Page</p>
+      <p>404 Not Found Page</p>
       <button onClick={handleClick}>Go to Home page</button>
     </div>
   )
 }
 
-AboutPage.propTypes = {
+NotFound.propTypes = {
   history: PropTypes.object
 }
 
-export default AboutPage;
+export default NotFound;

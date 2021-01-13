@@ -23,9 +23,6 @@ const template = ({ css, scripts }, req, res) => {
       <link rel="icon" href="/favicon.ico" />
       <link rel="manifest" href="/manifest.webmanifest" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="description" content="Minimal SSR React App" />
-      <meta name="theme-color" content="#000000" />
-      <title>Minimal SSR React App</title>
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
         ${helmet.link.toString()}
