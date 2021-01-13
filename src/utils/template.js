@@ -1,20 +1,31 @@
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
 import { Helmet } from 'react-helmet'
+import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import { ChunkExtractor } from '@loadable/server'
 
 import App from '../App';
 
-const template = ({ css, scripts }, req, res) => {
-  const reactApp = (
+const template = (assets, req, res) => {
+  const extractor = new ChunkExtractor({
+    statsFile: assets,
+    entrypoints: ['app', 'vendors']
+  });
+
+  const reactApp = extractor.collectChunks(
     <StaticRouter location={req.path} context={{ req, res }}>
       <App />
     </StaticRouter>
   );
-  const renderedApp = ReactDOMServer.renderToString(reactApp);
 
+  const renderedApp = renderToString(reactApp);
 
   const helmet = Helmet.renderStatic();
+  const linkTags = extractor.getLinkTags();
+  const styleTags = extractor.getStyleTags();
+  const scriptTags = extractor.getScriptTags();
+
+
   const html = `
     <!DOCTYPE html>
     <html lang="en" ${helmet.htmlAttributes.toString()}>
@@ -26,12 +37,13 @@ const template = ({ css, scripts }, req, res) => {
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
         ${helmet.link.toString()}
-        ${css}
+        ${linkTags}
+        ${styleTags}
       </head>
       <body ${helmet.bodyAttributes.toString()}>
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root">${renderedApp}</div>
-        ${scripts}
+        ${scriptTags}
       </body>
     </html>`;
 

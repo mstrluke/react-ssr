@@ -1,7 +1,7 @@
 ## React Isomorphic (SSR, CSR)
 
 This template is made for developers who are tired of finding a good quick start template.
-The template is flexible to update.
+The template is flexible to upgrade.
 Use it as you want.
 
 ### Supported features
