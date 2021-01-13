@@ -10,6 +10,7 @@ Use it as you want.
 - Client Side Rendering
 - Isomorphyc Rendering
 - Hot Module Replacement
+- Webpack Dev Server
 - Code splitting
 
 ### Todo features
@@ -19,7 +20,6 @@ Use it as you want.
 - Docker wrapper
 - React Context API
 - API config
-
 
 ### Installation
 
