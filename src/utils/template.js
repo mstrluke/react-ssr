@@ -2,16 +2,10 @@ import React from 'react';
 import { Helmet } from 'react-helmet'
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
-import { ChunkExtractor } from '@loadable/server'
 
 import App from '../App';
 
-const template = (assets, req, res) => {
-  const extractor = new ChunkExtractor({
-    statsFile: assets,
-    entrypoints: ['app', 'vendors']
-  });
-
+const template = (extractor, req, res) => {
   const reactApp = extractor.collectChunks(
     <StaticRouter location={req.path} context={{ req, res }}>
       <App />

@@ -3,12 +3,12 @@ require('@babel/register')({
 });
 
 const { template } = require('./utils');
+const { ChunkExtractor } = require('@loadable/server');
 const express = require('express');
 const path = require('path');
 
 
 const PORT = process.env.APP_PORT || '3000'
-const assets = path.resolve(process.cwd(), './build/loadable-stats.json')
 const app = express();
 const router = express.Router();
 
@@ -22,7 +22,11 @@ app.use((req, res, next) => {
 })
 
 router.get('/*', (req, res) => {
-  const html = template(assets, req, res);
+  const extractor = new ChunkExtractor({
+    statsFile: path.resolve(process.cwd(), './build/loadable-stats.json'),
+    entrypoints: ['app', 'vendors']
+  });
+  const html = template(extractor, req, res);
 
   res.set('content-type', 'text/html')
   res.send(html);
