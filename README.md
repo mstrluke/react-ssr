@@ -8,7 +8,7 @@ Use it as you want.
 
 - Server Side Rendering
 - Client Side Rendering
-- Isomorphyc Rendering
+- Isomorphic Rendering
 - Hot Module Replacement
 - Webpack Dev Server
 - Code splitting
