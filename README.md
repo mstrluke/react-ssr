@@ -13,11 +13,11 @@ Use it as you want.
 - Webpack Dev Server
 - Code splitting
 - Components Lazy Loading
+- Docker wrapper
+- CSS and SCSS Support
 
 ### Todo features
 
-- CSS and SCSS Support
-- Docker wrapper
 - React Context API
 - API config
 
@@ -31,7 +31,7 @@ $ cd react-ssr
 $ yarn install
 ```
 
-### How to run
+### How to run via npm or yarn
 
 Build source
 ```sh
@@ -46,11 +46,9 @@ Start production
 $ yarn prod or npm run prod
 ```
 
-### Used packages
-These are the packages for which I am very grateful.
+### How to run via docker
 
-| Pakcage | README |
-| ------ | ------ |
-| Webpack packages| https://github.com/webpack/webpack/blob/master/README.md |
-| Babel packages| https://github.com/babel/babel/blob/main/README.md |
-| Eslint packages| https://github.com/eslint/eslint/blob/master/README.md |
+```sh
+$ docker build -f docker/Dockerfile -t react-ssr .
+$ docker run -p 3000:3000 react-ssr
+```

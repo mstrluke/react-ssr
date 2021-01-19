@@ -6,19 +6,16 @@ import { StaticRouter } from 'react-router-dom';
 import App from '../App';
 
 const template = (extractor, req, res) => {
-  const reactApp = extractor.collectChunks(
+  const jsxApp = extractor.collectChunks(
     <StaticRouter location={req.path} context={{ req, res }}>
       <App />
     </StaticRouter>
   );
-
-  const renderedApp = renderToString(reactApp);
-
+  const renderedApp = renderToString(jsxApp);
   const helmet = Helmet.renderStatic();
   const linkTags = extractor.getLinkTags();
   const styleTags = extractor.getStyleTags();
   const scriptTags = extractor.getScriptTags();
-
 
   const html = `
     <!DOCTYPE html>
@@ -40,6 +37,7 @@ const template = (extractor, req, res) => {
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root">${renderedApp}</div>
         ${scriptTags}
+        ${helmet.script.toString()}
       </body>
     </html>`;
 

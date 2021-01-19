@@ -10,7 +10,7 @@ const base = require('./webpack-base.config');
 module.exports = merge(base, {
   mode: 'development',
   devtool: 'inline-source-map',
-  plugins: base.plugins.concat([
+  plugins: [
     new HtmlWebpackPlugin({
       inject: 'body',
       template: path.resolve(process.cwd(), './public/index.html'),
@@ -22,7 +22,16 @@ module.exports = merge(base, {
         }).parsed
       )
     }),
-  ]),
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.(sc|c)ss$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
+  },
   devServer: {
     contentBase: path.join(process.cwd(), './build'),
     historyApiFallback: true,

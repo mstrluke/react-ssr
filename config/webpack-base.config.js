@@ -1,5 +1,5 @@
 const path = require('path');
-const CopyPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin')
 
 
@@ -13,6 +13,9 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(process.cwd(), './build'),
     publicPath: '/'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.css', '.scss']
   },
   plugins: [
     new CopyPlugin({
@@ -35,10 +38,7 @@ module.exports = {
       },
       {
         loader: require.resolve('file-loader'),
-        exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
-        options: {
-          name: 'static/media/[name].[hash:8].[ext]',
-        },
+        exclude: [/\.(js|mjs|jsx|ts|tsx|scss|css)$/, /\.html$/, /\.json$/],
       },
     ],
   },

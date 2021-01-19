@@ -3,12 +3,13 @@ require('@babel/register')({
 });
 
 const { template } = require('./utils');
-const { ChunkExtractor } = require('@loadable/server');
 const express = require('express');
 const path = require('path');
+const { ChunkExtractor } = require('@loadable/server');
 
 
-const PORT = process.env.APP_PORT || '3000'
+const PORT = process.env.APP_PORT || '3000';
+const HOST = process.env.APP_HOST || '0.0.0.0';
 const app = express();
 const router = express.Router();
 
@@ -21,17 +22,18 @@ app.use((req, res, next) => {
   next();
 })
 
-router.get('/*', (req, res) => {
-  const extractor = new ChunkExtractor({
-    statsFile: path.resolve(process.cwd(), './build/loadable-stats.json'),
-    entrypoints: ['app', 'vendors']
-  });
-  const html = template(extractor, req, res);
+const statsFile = path.resolve(process.cwd(), './build/loadable-stats.json')
+const extractor = new ChunkExtractor({
+  statsFile,
+  entrypoints: ['app', 'vendors']
+});
 
+router.get('/*', async (req, res) => {
+  const html = template(extractor, req, res);
   res.set('content-type', 'text/html')
   res.send(html);
 });
 
 app.get('/*', router);
 
-app.listen(PORT, () => console.log(`listening on http://localhost:${PORT}`));
+app.listen(PORT, HOST, () => console.log(`Started on http://${HOST}:${PORT}`));
