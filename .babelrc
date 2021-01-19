@@ -3,5 +3,17 @@
     "@babel/preset-react",
     "@babel/preset-env"
   ],
-  "plugins": ["@babel/plugin-syntax-dynamic-import", "@loadable/babel-plugin"]
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
+    "@loadable/babel-plugin",
+    [
+      "css-modules-transform",
+      {
+        "extensions": [
+          ".css",
+          ".scss"
+        ]
+      }
+    ]
+  ]
 }

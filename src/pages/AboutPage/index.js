@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet';
+
+import './index.scss'
 
 const AboutPage = ({ history }) => {
   const handleClick = () => {
@@ -13,7 +15,7 @@ const AboutPage = ({ history }) => {
         <title>About page | React SSR</title>
         <meta name="description" content="About page" />
       </Helmet>
-      <p>About Page</p>
+      <p className="text">About Page</p>
       <button onClick={handleClick}>Go to Home page</button>
     </div>
   )
