@@ -33,6 +33,8 @@ $ yarn install
 
 ### How to run via npm or yarn
 
+Before start your are should copy envs from .env.dev to .env
+
 Build source
 ```sh
 $ yarn build or npm run build
